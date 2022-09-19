@@ -95,6 +95,26 @@ public final class MethodCallHandlerImpl implements MethodCallHandler {
       sender.send(intent);
 
       result.success(null);
+    } else if ("linkLaunch".equalsIgnoreCase(call.method)) {
+
+      try {
+        intent = Intent.parseUri(data.toString(), Intent.URI_INTENT_SCHEME);
+
+        Log.d(TAG, intent.getAction());
+        Log.d(TAG, String.valueOf(intent.getFlags()));
+        Log.d(TAG, String.valueOf(intent.getCategories()));
+        Log.d(TAG, String.valueOf(intent.getData()));
+        Log.d(TAG, String.valueOf(intent.getPackage()));
+        Log.d(TAG, String.valueOf(intent.getComponent()));
+        Log.d(TAG, String.valueOf(intent.getType()));
+
+      } catch (URISyntaxException e) {
+        e.printStackTrace();
+      }
+
+      sender.send(intent);
+
+      result.success(null);      
     } else if ("launchChooser".equalsIgnoreCase(call.method)) {
       String title = call.argument("chooserTitle");
       sender.launchChooser(intent, title);
