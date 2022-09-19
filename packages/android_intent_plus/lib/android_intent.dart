@@ -149,6 +149,15 @@ class AndroidIntent {
 
     await _channel.invokeMethod<void>('launch', _buildArguments());
   }
+  
+  Future<void> linkLaunch() async {
+    if (!_platform.isAndroid) {
+      return;
+    }
+
+    await _channel.invokeMethod<void>('linkLaunch', _buildArguments());
+  }
+  
 
   /// Launch the intent with 'createChooser(intent, title)'.
   ///
